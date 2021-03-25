@@ -3,6 +3,7 @@
 // File Name:	PlayerMovementController.cs
 // Author(s):	Jeremy Kings (j.kings) - Unity Project
 //              Nathan Mueller - original Zero Engine project
+//              Gavin Cooper - added player movement side to side
 // Project:		Endless Runner
 // Course:		WANIC VGP
 //
@@ -17,68 +18,106 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    [Tooltip("The health bar feedback bar")]
+    public GameObject healthBarObj;
+    [Tooltip("The distance text mesh pro object")]
+    public GameObject distanceObj;
+    [Tooltip("The autorun speed of the player, used to track distance traveled")]
     public float MoveSpeed = 10;
+    [Tooltip("The speed of the player's sprint")]
+    public float MovementSpeed = 5;
+    [Tooltip("The max and starting health")]
     public int MaxHealth = 3;
+    [Tooltip("The jump height of the player, in unity squares")]
     public float JumpHeight = 5;
+    [Tooltip("The number of jumps the player has")]
     public int MaxNumberOfJumps = 2;
+    [Tooltip("The speed the player slams back to the ground")]
+    public int SlamSpeed = 15;
+    [Tooltip("The key that will be used for jumping")]
     public KeyCode JumpKey = KeyCode.Space;
-    public KeyCode SlideKey = KeyCode.LeftShift;
-    
-    private int jumpsRemaining = 0;
-    private int currentHealth = 0;
-    private string nameOfHealthDisplayObject = "HealthBar";
-    private string nameOfDistanceLabelObject = "DistanceLabel";
-    private GameObject healthBarObj = null;
-    private GameObject distanceObj = null;
-    private float startingX = 0;
-    private PlayerAnimationManager animationManager;
+    [Tooltip("The key that will be used for sliding")]
+    public KeyCode Slide_SlamKey = KeyCode.S;
+    [Tooltip("The key that will be used for moving right")]
+    public KeyCode RightKey = KeyCode.D;
+    [Tooltip("The key that will be used for moving left")]
+    public KeyCode LeftKey = KeyCode.A;
+    [Tooltip("The box collider offset while sliding")]
+    public Vector2 SlidingColliderOffset;
+    [Tooltip("The box collider size while sliding")]
+    public Vector2 SlidingColliderSize;
+
+    int jumpsRemaining = 0;
+    int currentHealth = 0;
+    float startingX = 0;
+    PlayerAnimationManager animationManager;
+    BoxCollider2D PlayerBoxCollider;
+    Rigidbody2D PlayerRB;
+    Vector2 StartingColliderOffset;
+    Vector2 StartingColliderSize;
+    float Dirrection = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        healthBarObj = GameObject.Find(nameOfHealthDisplayObject);
-        distanceObj = GameObject.Find(nameOfDistanceLabelObject);
+        //get components 
         animationManager = GetComponent<PlayerAnimationManager>();
+        PlayerBoxCollider = GetComponent<BoxCollider2D>();
+        PlayerRB = GetComponent<Rigidbody2D>();
+
+        //set variables
         if (healthBarObj != null)
         {
           healthBarObj.GetComponent<FeedbackBar>().SetMax(MaxHealth);
         }
-
-        // Take the square root of the jump height so that the math for gravity works
-        // to make the number the user enters the number of units the player will
-        // actually be able to jump
-        JumpHeight = Mathf.Sqrt(2.0f * Physics2D.gravity.magnitude * JumpHeight);
-        
         currentHealth = MaxHealth;
         startingX = transform.position.x;
-
-        // Reset score
         PlayerSaveData.DistanceRun = 0;
+        JumpHeight = Mathf.Sqrt(2.0f * Physics2D.gravity.magnitude * JumpHeight); // Take the square root of the jump height so that the math for gravity works to make the number the user enters the number of units the player will actually be able to jump
+        StartingColliderOffset = PlayerBoxCollider.offset;
+        StartingColliderSize = PlayerBoxCollider.size;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //check ground
         bool grounded = IsGrounded();
 
+        //reset player hitbox
+        PlayerBoxCollider.offset = StartingColliderOffset;
+        PlayerBoxCollider.size = StartingColliderSize;
+
         // Jumping
-        if (Input.GetKeyDown(JumpKey))
+        if (Input.GetKeyDown(JumpKey) && !Input.GetKey(Slide_SlamKey))
         {
             if (jumpsRemaining > 0)
             {
                 animationManager.SwitchTo(PlayerAnimationStates.Jump);
-                var jump_vec = new Vector3(0,JumpHeight,0);
-                gameObject.GetComponent<Rigidbody2D>().velocity = jump_vec;
+                var jump_vec = new Vector3(transform.position.x,JumpHeight,0);
+                PlayerRB.velocity = jump_vec;
                 jumpsRemaining -= 1;
             }
         }
+        //Slam
+        else if (Input.GetKey(Slide_SlamKey) && !grounded)
+        {
+            animationManager.SwitchTo(PlayerAnimationStates.Slam);
+            var slam_vec = new Vector3(transform.position.x, -SlamSpeed, 0);
+            PlayerRB.velocity = slam_vec;
+        }
         // Sliding
-        else if (Input.GetKey(SlideKey) && grounded)
+        else if (Input.GetKey(Slide_SlamKey) && grounded)
         {
             animationManager.SwitchTo(PlayerAnimationStates.Slide);
+
+            //change character hitbox
+            PlayerBoxCollider.offset = SlidingColliderOffset;
+            PlayerBoxCollider.size = SlidingColliderSize;
+
         }
         // Running
-        else if (!Input.GetKey(SlideKey) && grounded)
+        else if (!Input.GetKey(Slide_SlamKey) && grounded)
         {
             animationManager.SwitchTo(PlayerAnimationStates.Run);
         }
@@ -88,8 +127,23 @@ public class PlayerMovementController : MonoBehaviour
             animationManager.SwitchTo(PlayerAnimationStates.Jump);
         }
 
-        // Lock the player to X = StartingX;
-        gameObject.transform.position = new Vector3(startingX, transform.position.y, transform.position.z);
+        //Figure out the dirrection player is moving
+        if (Input.GetKeyDown(LeftKey))
+        {
+            Dirrection = -1.5f;
+        }
+        if (Input.GetKeyDown(RightKey))
+        {
+            Dirrection = 1;
+        }
+        if (Input.GetKey(RightKey) == false && Input.GetKey(LeftKey) == false)
+        {
+            Dirrection = 0;
+        }
+
+        //Changes the players horizontal movement
+        PlayerRB.velocity = new Vector2(Dirrection * MovementSpeed, PlayerRB.velocity.y);
+
 
         // Update the Distance travelled
         PlayerSaveData.DistanceRun += MoveSpeed * Time.deltaTime;

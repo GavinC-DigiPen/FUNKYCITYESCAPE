@@ -18,14 +18,18 @@ public enum PlayerAnimationStates
 {
     Run,
     Jump,
+    Slam,
     Slide,
     Hurt
 };
 
 public class PlayerAnimationManager : MonoBehaviour
-{
+{   
+    [Tooltip("Invulnerable time")]
     public float InvulnTime = 0.25f;
+    [Tooltip("Current state")]
     public PlayerAnimationStates CurrentState = PlayerAnimationStates.Run;
+    [Tooltip("Last state")]
     public PlayerAnimationStates PreviousState = PlayerAnimationStates.Run;
 
     private float CurrInvulnTime = 0;
@@ -99,6 +103,9 @@ public class PlayerAnimationManager : MonoBehaviour
                 break;
             case PlayerAnimationStates.Jump:
                 animator.Play("Jump");
+                break;
+            case PlayerAnimationStates.Slam:
+                animator.Play("Jump");                  //slam animation
                 break;
             case PlayerAnimationStates.Slide:
                 animator.Play("Slide");
