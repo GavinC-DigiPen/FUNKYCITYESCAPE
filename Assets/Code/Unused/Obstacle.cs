@@ -1,8 +1,9 @@
 ﻿//------------------------------------------------------------------------------
 //
-// File Name:	Prop.cs
+// File Name:	Obstacle.cs
 // Author(s):	Jeremy Kings (j.kings) - Unity Project
 //              Nathan Mueller - original Zero Engine project
+//              Gavin Cooper
 // Project:		Endless Runner
 // Course:		WANIC VGP
 //
@@ -14,12 +15,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Prop : MonoBehaviour
+public class Obstacle : MonoBehaviour
 {
-    public float MoveSpeed = 10.0f;
-    public float DestroyXLimit = -10.0f;
-    
-    float yPosition = 0.0f;
+    [Tooltip("The speed multiply of the obstacle (1 is the same as enviorment)")]
+    public float SpeedMultiply = 1;
+    [Tooltip("When does the object despawn")]
+    public float DestroyXLimit = -19.0f;
+
+    float moveSpeed;
+    private float yPosition = 0.0f;
     private Rigidbody2D physics = null;
 
     // Start is called before the first frame update
@@ -32,11 +36,11 @@ public class Prop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        physics.velocity = new Vector3(MoveSpeed, 0, 0);
-        transform.position = new Vector3(transform.position.x,
-            yPosition, transform.position.z);
+        moveSpeed = PlayerSaveData.Speed;
+        physics.velocity = new Vector3(moveSpeed * SpeedMultiply, 0, 0);
+        transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
 
-        if (transform.position.x <= DestroyXLimit)
+        if(transform.position.x <= DestroyXLimit)
         {
             Destroy(gameObject);
         }

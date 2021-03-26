@@ -22,8 +22,6 @@ public class PlayerMovementController : MonoBehaviour
     public GameObject healthBarObj;
     [Tooltip("The distance text mesh pro object")]
     public GameObject distanceObj;
-    [Tooltip("The autorun speed of the player, used to track distance traveled")]
-    public float MoveSpeed = 10;
     [Tooltip("The speed of the player's sprint")]
     public float MovementSpeed = 5;
     [Tooltip("The max and starting health")]
@@ -47,9 +45,9 @@ public class PlayerMovementController : MonoBehaviour
     [Tooltip("The box collider size while sliding")]
     public Vector2 SlidingColliderSize;
 
+    float GameSpeed;
     int jumpsRemaining = 0;
     int currentHealth = 0;
-    float startingX = 0;
     PlayerAnimationManager animationManager;
     BoxCollider2D PlayerBoxCollider;
     Rigidbody2D PlayerRB;
@@ -71,7 +69,6 @@ public class PlayerMovementController : MonoBehaviour
           healthBarObj.GetComponent<FeedbackBar>().SetMax(MaxHealth);
         }
         currentHealth = MaxHealth;
-        startingX = transform.position.x;
         PlayerSaveData.DistanceRun = 0;
         JumpHeight = Mathf.Sqrt(2.0f * Physics2D.gravity.magnitude * JumpHeight); // Take the square root of the jump height so that the math for gravity works to make the number the user enters the number of units the player will actually be able to jump
         StartingColliderOffset = PlayerBoxCollider.offset;
@@ -84,12 +81,15 @@ public class PlayerMovementController : MonoBehaviour
         //check ground
         bool grounded = IsGrounded();
 
+        //set new speed
+        GameSpeed = PlayerSaveData.Speed;
+
         //reset player hitbox
         PlayerBoxCollider.offset = StartingColliderOffset;
         PlayerBoxCollider.size = StartingColliderSize;
 
         // Jumping
-        if (Input.GetKeyDown(JumpKey) && !Input.GetKey(Slide_SlamKey))
+        if (Input.GetKeyDown(JumpKey))
         {
             if (jumpsRemaining > 0)
             {
@@ -100,7 +100,7 @@ public class PlayerMovementController : MonoBehaviour
             }
         }
         //Slam
-        else if (Input.GetKey(Slide_SlamKey) && !grounded)
+        else if (Input.GetKey(Slide_SlamKey) && !grounded && PlayerRB.velocity.y <= 0)
         {
             animationManager.SwitchTo(PlayerAnimationStates.Slam);
             var slam_vec = new Vector3(transform.position.x, -SlamSpeed, 0);
@@ -144,9 +144,8 @@ public class PlayerMovementController : MonoBehaviour
         //Changes the players horizontal movement
         PlayerRB.velocity = new Vector2(Dirrection * MovementSpeed, PlayerRB.velocity.y);
 
-
         // Update the Distance travelled
-        PlayerSaveData.DistanceRun += MoveSpeed * Time.deltaTime;
+        PlayerSaveData.DistanceRun += GameSpeed * Time.deltaTime;
         if (distanceObj != null)
         {
             if (distanceObj.GetComponent<TextMeshProUGUI>() != null)
@@ -163,26 +162,33 @@ public class PlayerMovementController : MonoBehaviour
         // Hit an Obstacle
         if (collision.collider.gameObject.CompareTag("Obstacle"))
         {
-            Obstacle obstacle = collision.gameObject.GetComponent<Obstacle>();
+            ObstacleInfo Obstacle = collision.gameObject.GetComponent<ObstacleInfo>();
 
-            if (obstacle != null)
+            if (Obstacle != null)
             {
-                currentHealth -= obstacle.Damage;
-                // Game Over
-                if (currentHealth <= 0)
-                {
-                    // Load score level
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("ScoreScreen");
-                }
-                if (obstacle.DestroyOnPlayerCollision)
+                currentHealth -= Obstacle.Damage;
+
+                //destroy object that collided
+                if (Obstacle.DestroyOnPlayerCollision)
                 {
                     Destroy(collision.collider.gameObject);
                 }
-                if (healthBarObj != null)
-                {
-                    healthBarObj.GetComponent<FeedbackBar>().SetValue(currentHealth);
-                    animationManager.SwitchTo(PlayerAnimationStates.Hurt);
-                }
+            }
+            else
+            {
+                currentHealth -= 1;
+            }
+
+            // Game Over
+            if (currentHealth <= 0)
+            {
+                // Load score level
+                UnityEngine.SceneManagement.SceneManager.LoadScene("ScoreScreen");
+            }
+            if (healthBarObj != null)
+            {
+                healthBarObj.GetComponent<FeedbackBar>().SetValue(currentHealth);
+                animationManager.SwitchTo(PlayerAnimationStates.Hurt);
             }
         }
         // Hit the floor

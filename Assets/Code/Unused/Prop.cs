@@ -1,9 +1,8 @@
 ﻿//------------------------------------------------------------------------------
 //
-// File Name:	Obstacle.cs
+// File Name:	Prop.cs
 // Author(s):	Jeremy Kings (j.kings) - Unity Project
 //              Nathan Mueller - original Zero Engine project
-//              Gavin Cooper
 // Project:		Endless Runner
 // Course:		WANIC VGP
 //
@@ -15,14 +14,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Prop : MonoBehaviour
 {
-    public bool DestroyOnPlayerCollision = true;
-    public int Damage = 1;
-    public float DestroyXLimit = -19.0f;
-    public float moveSpeed = -10.0f;
+    public float DestroyXLimit = -10.0f;
 
-    private float yPosition = 0.0f;
+    float MoveSpeed;
+    float yPosition = 0.0f;
     private Rigidbody2D physics = null;
 
     // Start is called before the first frame update
@@ -35,10 +32,12 @@ public class Obstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        physics.velocity = new Vector3(moveSpeed, 0, 0);
-        transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
+        MoveSpeed = PlayerSaveData.Speed;
+        physics.velocity = new Vector3(MoveSpeed, 0, 0);
+        transform.position = new Vector3(transform.position.x,
+            yPosition, transform.position.z);
 
-        if(transform.position.x <= DestroyXLimit)
+        if (transform.position.x <= DestroyXLimit)
         {
             Destroy(gameObject);
         }

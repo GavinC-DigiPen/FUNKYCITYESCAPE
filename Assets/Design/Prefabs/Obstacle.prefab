@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1058519915616819888}
   - component: {fileID: 8284546310493225511}
   - component: {fileID: 5832176597951909059}
+  - component: {fileID: 519527992721708282}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Obstacle
@@ -143,6 +144,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5052342b774aa4c9866dbede28286a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyOnPlayerCollision: 1
-  Damage: 1
+  SpeedMultiply: 1
   DestroyXLimit: -10
+--- !u!114 &519527992721708282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5713477468529980678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246cbabd6cf3d9a4e883f40b9c3cae14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+  DestroyOnPlayerCollision: 1
