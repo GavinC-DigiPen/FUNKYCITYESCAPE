@@ -22,7 +22,7 @@ public class Obstacle : MonoBehaviour
     [Tooltip("When does the object despawn")]
     public float DestroyXLimit = -19.0f;
 
-    float moveSpeed;
+    float GameSpeed;
     private float yPosition = 0.0f;
     private Rigidbody2D physics = null;
 
@@ -36,8 +36,8 @@ public class Obstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveSpeed = PlayerSaveData.Speed;
-        physics.velocity = new Vector3(moveSpeed * SpeedMultiply, 0, 0);
+        GameSpeed = PlayerSaveData.Speed;
+        physics.velocity = new Vector3(-GameSpeed * SpeedMultiply, 0, 0);
         transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
 
         if(transform.position.x <= DestroyXLimit)

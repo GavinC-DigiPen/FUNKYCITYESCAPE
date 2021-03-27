@@ -20,6 +20,7 @@ public enum PlayerAnimationStates
     Jump,
     Slam,
     Slide,
+    Attack,
     Hurt
 };
 
@@ -27,19 +28,24 @@ public class PlayerAnimationManager : MonoBehaviour
 {   
     [Tooltip("Invulnerable time")]
     public float InvulnTime = 0.25f;
+    [Tooltip("The current amount of time in attack animation")]
+    public float TimeInAttack = 0.7f;
     [Tooltip("Current state")]
     public PlayerAnimationStates CurrentState = PlayerAnimationStates.Run;
     [Tooltip("Last state")]
     public PlayerAnimationStates PreviousState = PlayerAnimationStates.Run;
+    [Tooltip("The current amount of time invonerable (for scripts)")]
+    public float CurrInvulnTime = 0;
 
-    private float CurrInvulnTime = 0;
-    private Animator animator;
+    Animator animator;
+    float AttackCooldownTimer;
 
     // Start is called before the first frame update
     void Start()
     {
         SwitchTo(CurrentState);
         animator = GetComponent<Animator>();
+        animator.Play("Run");
     }
 
     // Update is called once per frame
@@ -47,6 +53,7 @@ public class PlayerAnimationManager : MonoBehaviour
     {
         // Override the animation that should be happening if we are hurt
         CurrInvulnTime -= Time.deltaTime;
+        AttackCooldownTimer -= Time.deltaTime;
         if (CurrInvulnTime > 0 && CurrentState != PlayerAnimationStates.Hurt)
         {
             SwitchTo(PlayerAnimationStates.Hurt);
@@ -80,6 +87,18 @@ public class PlayerAnimationManager : MonoBehaviour
         {
             CurrInvulnTime = InvulnTime;
         }
+
+        //ignore if attacking
+        if (AttackCooldownTimer >= 0 && state != PlayerAnimationStates.Hurt)
+        {
+            return;
+        }
+
+        if (CurrentState != PlayerAnimationStates.Attack && state == PlayerAnimationStates.Attack && state != PlayerAnimationStates.Hurt)
+        {
+            AttackCooldownTimer = TimeInAttack;
+        }
+
         PreviousState = CurrentState;
         CurrentState = state;
     }
@@ -105,10 +124,13 @@ public class PlayerAnimationManager : MonoBehaviour
                 animator.Play("Jump");
                 break;
             case PlayerAnimationStates.Slam:
-                animator.Play("Jump");                  //slam animation
+                animator.Play("Slam");
                 break;
             case PlayerAnimationStates.Slide:
                 animator.Play("Slide");
+                break;
+            case PlayerAnimationStates.Attack:
+                animator.Play("Attack");
                 break;
             case PlayerAnimationStates.Hurt:
                 animator.Play("Hurt");

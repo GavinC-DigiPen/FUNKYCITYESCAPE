@@ -18,7 +18,7 @@ public class Prop : MonoBehaviour
 {
     public float DestroyXLimit = -10.0f;
 
-    float MoveSpeed;
+    float GameSpeed;
     float yPosition = 0.0f;
     private Rigidbody2D physics = null;
 
@@ -32,8 +32,8 @@ public class Prop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveSpeed = PlayerSaveData.Speed;
-        physics.velocity = new Vector3(MoveSpeed, 0, 0);
+        GameSpeed = PlayerSaveData.Speed;
+        physics.velocity = new Vector3(-GameSpeed, 0, 0);
         transform.position = new Vector3(transform.position.x,
             yPosition, transform.position.z);
 

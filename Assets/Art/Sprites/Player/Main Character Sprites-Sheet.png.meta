@@ -1,0 +1,596 @@
+fileFormatVersion: 2
+guid: b260f6614e7e495469f8eeb2840c3af2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6758005575228613660
+    second: Main Character Sprites-Sheet_0
+  - first:
+      213: -5861849612706564545
+    second: Main Character Sprites-Sheet_1
+  - first:
+      213: -2909759701357593487
+    second: Main Character Sprites-Sheet_2
+  - first:
+      213: -7765878527679552398
+    second: Main Character Sprites-Sheet_3
+  - first:
+      213: -6524105618332411300
+    second: Main Character Sprites-Sheet_4
+  - first:
+      213: 2459978389493818555
+    second: Main Character Sprites-Sheet_5
+  - first:
+      213: -6946597317505542570
+    second: Main Character Sprites-Sheet_6
+  - first:
+      213: 7796212067853248157
+    second: Main Character Sprites-Sheet_7
+  - first:
+      213: 1990870703681522582
+    second: Main Character Sprites-Sheet_8
+  - first:
+      213: -3561277358826383799
+    second: Main Character Sprites-Sheet_9
+  - first:
+      213: -4594323545630724555
+    second: Main Character Sprites-Sheet_10
+  - first:
+      213: 2940413867436666645
+    second: Main Character Sprites-Sheet_11
+  - first:
+      213: 894893682537040053
+    second: Main Character Sprites-Sheet_12
+  - first:
+      213: 6721037709306138455
+    second: Main Character Sprites-Sheet_13
+  - first:
+      213: 7423335636138401349
+    second: Main Character Sprites-Sheet_14
+  - first:
+      213: -9130122461589292747
+    second: Main Character Sprites-Sheet_15
+  - first:
+      213: 697035492751293698
+    second: Main Character Sprites-Sheet_16
+  - first:
+      213: 7105683071179416114
+    second: Main Character Sprites-Sheet_17
+  - first:
+      213: -5120361950075511579
+    second: Main Character Sprites-Sheet_18
+  - first:
+      213: 676587363763903813
+    second: Main Character Sprites-Sheet_19
+  - first:
+      213: -773548429854702761
+    second: Main Character Sprites-Sheet_20
+  - first:
+      213: 5163181020262144152
+    second: Main Character Sprites-Sheet_21
+  - first:
+      213: -7408170786781797403
+    second: Main Character Sprites-Sheet_22
+  - first:
+      213: -6837018698717517367
+    second: Main Character Sprites-Sheet_23
+  - first:
+      213: -8627664602917248488
+    second: Main Character Sprites-Sheet_24
+  - first:
+      213: -7444577439564819982
+    second: Main Character Sprites-Sheet_25
+  - first:
+      213: 2305098451140354265
+    second: Main Character Sprites-Sheet_26
+  - first:
+      213: 9200575597154921731
+    second: Main Character Sprites-Sheet_27
+  - first:
+      213: 941757029615664368
+    second: Main Character Sprites-Sheet_28
+  - first:
+      213: 7017344982903476299
+    second: Main Character Sprites-Sheet_29
+  - first:
+      213: 2049946421220118802
+    second: Main Character Sprites-Sheet_30
+  - first:
+      213: -5656531784021557107
+    second: Main Character Sprites-Sheet_31
+  - first:
+      213: 8219602228669023809
+    second: Main Character Sprites-Sheet_32
+  - first:
+      213: -7599732364539015298
+    second: Main Character Sprites-Sheet_33
+  - first:
+      213: -7209298445450529219
+    second: Main Character Sprites-Sheet_34
+  - first:
+      213: -9049677382974950127
+    second: Main Character Sprites-Sheet_35
+  - first:
+      213: 7276420604771431685
+    second: Main Character Sprites-Sheet_36
+  - first:
+      213: 4164629283191607462
+    second: Main Character Sprites-Sheet_37
+  - first:
+      213: -1345888043538691164
+    second: Main Character Sprites-Sheet_38
+  - first:
+      213: 2484213684848427777
+    second: Main Character Sprites-Sheet_39
+  - first:
+      213: -8238363518372479035
+    second: Main Character Sprites-Sheet_40
+  - first:
+      213: -6084435266956559809
+    second: Main Character Sprites-Sheet_41
+  - first:
+      213: -6095704027228498109
+    second: Main Character Sprites-Sheet_42
+  - first:
+      213: -1126419249604010817
+    second: Main Character Sprites-Sheet_43
+  - first:
+      213: -8150289872927038714
+    second: Main Character Sprites-Sheet_44
+  - first:
+      213: 2384432809540432239
+    second: Main Character Sprites-Sheet_45
+  - first:
+      213: -7170180083149886331
+    second: Main Character Sprites-Sheet_46
+  - first:
+      213: 4201993528614396984
+    second: Main Character Sprites-Sheet_47
+  - first:
+      213: -4297383083963449436
+    second: Main Character Sprites-Sheet_48
+  - first:
+      213: -6564149041020506101
+    second: Main Character Sprites-Sheet_49
+  - first:
+      213: -4002498742475329033
+    second: Main Character Sprites-Sheet_50
+  - first:
+      213: -492211816180043999
+    second: Main Character Sprites-Sheet_51
+  - first:
+      213: -195224939127218247
+    second: Main Character Sprites-Sheet_52
+  - first:
+      213: -9170058462707888234
+    second: Main Character Sprites-Sheet_53
+  - first:
+      213: -8911494141959049660
+    second: Main Character Sprites-Sheet_54
+  - first:
+      213: 8685856459754546714
+    second: Main Character Sprites-Sheet_55
+  - first:
+      213: 5344355153660725116
+    second: Main Character Sprites-Sheet_56
+  - first:
+      213: -8823851026662653321
+    second: Main Character Sprites-Sheet_57
+  - first:
+      213: 5227459526071261068
+    second: Main Character Sprites-Sheet_58
+  - first:
+      213: 7457281451341909597
+    second: Main Character Sprites-Sheet_59
+  - first:
+      213: -5867866201297909554
+    second: Main Character Sprites-Sheet_60
+  - first:
+      213: 317368102951085832
+    second: Main Character Sprites-Sheet_61
+  - first:
+      213: -4924851694560011583
+    second: Main Character Sprites-Sheet_62
+  - first:
+      213: -195284890897120154
+    second: Main Character Sprites-Sheet_63
+  - first:
+      213: 6291498666250266427
+    second: Main Character Sprites-Sheet_64
+  - first:
+      213: 6460604484047283136
+    second: Main Character Sprites-Sheet_65
+  - first:
+      213: 614554109956213228
+    second: Main Character Sprites-Sheet_66
+  - first:
+      213: -1283624382053158067
+    second: Main Character Sprites-Sheet_67
+  - first:
+      213: 2180964002298586870
+    second: Main Character Sprites-Sheet_68
+  - first:
+      213: 2283348406966620141
+    second: Main Character Sprites-Sheet_69
+  - first:
+      213: -8501428829240196332
+    second: Main Character Sprites-Sheet_70
+  - first:
+      213: -6065223156403904625
+    second: Main Character Sprites-Sheet_71
+  - first:
+      213: -6042588468224272690
+    second: Main Character Sprites-Sheet_72
+  - first:
+      213: 5754638470256999843
+    second: Main Character Sprites-Sheet_73
+  - first:
+      213: -5185804289455270738
+    second: Main Character Sprites-Sheet_74
+  - first:
+      213: 3114695121615536149
+    second: Main Character Sprites-Sheet_75
+  - first:
+      213: 5542339865398857747
+    second: Main Character Sprites-Sheet_76
+  - first:
+      213: 4089915259167379533
+    second: Main Character Sprites-Sheet_77
+  - first:
+      213: 9057056180613789094
+    second: Main Character Sprites-Sheet_78
+  - first:
+      213: 479331527573998275
+    second: Main Character Sprites-Sheet_79
+  - first:
+      213: -3126257580550558228
+    second: Main Character Sprites-Sheet_80
+  - first:
+      213: -5801020190386374294
+    second: Main Character Sprites-Sheet_81
+  - first:
+      213: 8682649969187769714
+    second: Main Character Sprites-Sheet_82
+  - first:
+      213: -1298570524082942861
+    second: Main Character Sprites-Sheet_83
+  - first:
+      213: 7618298819968616465
+    second: Main Character Sprites-Sheet_84
+  - first:
+      213: -73010544252603134
+    second: Main Character Sprites-Sheet_85
+  - first:
+      213: 8491365190887353127
+    second: Main Character Sprites-Sheet_86
+  - first:
+      213: 6322282975990589832
+    second: Main Character Sprites-Sheet_87
+  - first:
+      213: 4895802536924491906
+    second: Main Character Sprites-Sheet_88
+  - first:
+      213: 8586652897059985571
+    second: Main Character Sprites-Sheet_89
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Main Character Sprites-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c146c95e34249cd50800000000000000
+      internalID: 6758005575228613660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Character Sprites-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f363ddba5d686aea0800000000000000
+      internalID: -5861849612706564545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Character Sprites-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17c75dad7f47e97d0800000000000000
+      internalID: -2909759701357593487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Character Sprites-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 274a3dcdf9e0a3490800000000000000
+      internalID: -7765878527679552398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Character Sprites-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5a9a2e9188b575a0800000000000000
+      internalID: -6524105618332411300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Character Sprites-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb4aaeccf49932220800000000000000
+      internalID: 2459978389493818555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Character Sprites-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 656966c5b8ab89f90800000000000000
+      internalID: -6946597317505542570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Character Sprites-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d96a102d195b13c60800000000000000
+      internalID: 7796212067853248157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Character Sprites-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69b4bae5b5ef0ab10800000000000000
+      internalID: 1990870703681522582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Character Sprites-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94613805c1dc39ec0800000000000000
+      internalID: -3561277358826383799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -22,6 +22,8 @@ public class PlayerMovementController : MonoBehaviour
     public GameObject healthBarObj;
     [Tooltip("The distance text mesh pro object")]
     public GameObject distanceObj;
+    [Tooltip("The prefab that is summoned during an attack to do damage")]
+    public GameObject AttackObj;
     [Tooltip("The speed of the player's sprint")]
     public float MovementSpeed = 5;
     [Tooltip("The max and starting health")]
@@ -32,17 +34,21 @@ public class PlayerMovementController : MonoBehaviour
     public int MaxNumberOfJumps = 2;
     [Tooltip("The speed the player slams back to the ground")]
     public int SlamSpeed = 15;
+    [Tooltip("The cool down between attacks")]
+    public float AttackCooldown = 3;
     [Tooltip("The key that will be used for jumping")]
     public KeyCode JumpKey = KeyCode.Space;
+    [Tooltip("The key that will be used for attacking")]
+    public KeyCode AttackKey = KeyCode.E;
     [Tooltip("The key that will be used for sliding")]
     public KeyCode Slide_SlamKey = KeyCode.S;
     [Tooltip("The key that will be used for moving right")]
     public KeyCode RightKey = KeyCode.D;
     [Tooltip("The key that will be used for moving left")]
     public KeyCode LeftKey = KeyCode.A;
-    [Tooltip("The box collider offset while sliding")]
+    [Tooltip("The box collider offset while sliding/attacking")]
     public Vector2 SlidingColliderOffset;
-    [Tooltip("The box collider size while sliding")]
+    [Tooltip("The box collider size while sliding/attacking")]
     public Vector2 SlidingColliderSize;
 
     float GameSpeed;
@@ -54,10 +60,12 @@ public class PlayerMovementController : MonoBehaviour
     Vector2 StartingColliderOffset;
     Vector2 StartingColliderSize;
     float Dirrection = 0;
+    bool grounded = true;
+    float AttackCooldownTimer;
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         //get components 
         animationManager = GetComponent<PlayerAnimationManager>();
         PlayerBoxCollider = GetComponent<BoxCollider2D>();
@@ -78,9 +86,6 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //check ground
-        bool grounded = IsGrounded();
-
         //set new speed
         GameSpeed = PlayerSaveData.Speed;
 
@@ -106,6 +111,11 @@ public class PlayerMovementController : MonoBehaviour
             var slam_vec = new Vector3(transform.position.x, -SlamSpeed, 0);
             PlayerRB.velocity = slam_vec;
         }
+        // Falling
+        else if (!grounded)
+        {
+            animationManager.SwitchTo(PlayerAnimationStates.Jump);
+        }
         // Sliding
         else if (Input.GetKey(Slide_SlamKey) && grounded)
         {
@@ -117,16 +127,27 @@ public class PlayerMovementController : MonoBehaviour
 
         }
         // Running
-        else if (!Input.GetKey(Slide_SlamKey) && grounded)
+        else 
         {
             animationManager.SwitchTo(PlayerAnimationStates.Run);
         }
-        // Falling
-        else
-        {
-            animationManager.SwitchTo(PlayerAnimationStates.Jump);
-        }
 
+        //Count down attack cooldown
+        AttackCooldownTimer -= Time.deltaTime;
+
+        //Attacking
+        if (Input.GetKey(AttackKey) && AttackCooldownTimer <= 0)
+        {
+            animationManager.SwitchTo(PlayerAnimationStates.Attack);
+
+            //change character hitbox
+            PlayerBoxCollider.offset = SlidingColliderOffset;
+            PlayerBoxCollider.size = SlidingColliderSize;
+
+            //set cooldown time
+            AttackCooldownTimer = AttackCooldown;
+        }
+        
         //Figure out the dirrection player is moving
         if (Input.GetKeyDown(LeftKey))
         {
@@ -157,49 +178,84 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    //check if collide with an obstacle
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        // Hit an Obstacle
-        if (collision.collider.gameObject.CompareTag("Obstacle"))
+        var InvulnTime = GetComponent<PlayerAnimationManager>().CurrInvulnTime;
+
+        if (InvulnTime <= 0)
         {
-            ObstacleInfo Obstacle = collision.gameObject.GetComponent<ObstacleInfo>();
-
-            if (Obstacle != null)
+            // Hit an Obstacle
+            if (collision.collider.gameObject.CompareTag("Obstacle"))
             {
-                currentHealth -= Obstacle.Damage;
+                ObstacleInfo Obstacle = collision.gameObject.GetComponent<ObstacleInfo>();
 
-                //destroy object that collided
-                if (Obstacle.DestroyOnPlayerCollision)
+                if (Obstacle != null)
                 {
-                    Destroy(collision.collider.gameObject);
+                    currentHealth -= Obstacle.Damage;
+
+                    //destroy object that collided
+                    if (Obstacle.DestroyOnPlayerCollision)
+                    {
+                        Destroy(collision.collider.gameObject);
+                    }
+                }
+                else
+                {
+                    currentHealth -= 1;
+                }
+
+                // Game Over
+                if (currentHealth <= 0)
+                {
+                    // Load score level
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("ScoreScreen");
+                }
+                if (healthBarObj != null)
+                {
+                    healthBarObj.GetComponent<FeedbackBar>().SetValue(currentHealth);
+                    animationManager.SwitchTo(PlayerAnimationStates.Hurt);
                 }
             }
-            else
+            // Hit the floor
+            if (collision.collider.gameObject.CompareTag("Floor"))
             {
-                currentHealth -= 1;
-            }
-
-            // Game Over
-            if (currentHealth <= 0)
-            {
-                // Load score level
-                UnityEngine.SceneManagement.SceneManager.LoadScene("ScoreScreen");
-            }
-            if (healthBarObj != null)
-            {
-                healthBarObj.GetComponent<FeedbackBar>().SetValue(currentHealth);
-                animationManager.SwitchTo(PlayerAnimationStates.Hurt);
+                jumpsRemaining = MaxNumberOfJumps;
             }
         }
-        // Hit the floor
-        if (collision.collider.gameObject.CompareTag("Floor"))
-        {
-            jumpsRemaining = MaxNumberOfJumps;
-        } 
     }
 
+    //check if on ground
     public bool IsGrounded()
     {
-        return jumpsRemaining == MaxNumberOfJumps;
+        return grounded;
+    }
+
+    //collider to see on the ground
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Floor"))
+        {
+            grounded = true;
+            Debug.Log("Ground");
+        }
+    }
+
+    private void OnTriggerstay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Floor"))
+        {
+            grounded = true;
+            Debug.Log("Ground");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Floor"))
+        {
+            grounded = false;
+            Debug.Log("Not Ground");
+        }
     }
 }
