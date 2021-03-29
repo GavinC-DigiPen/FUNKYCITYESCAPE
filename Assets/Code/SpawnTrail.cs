@@ -27,14 +27,21 @@ public class SpawnTrail : MonoBehaviour
     [Tooltip("The offset of the spawn location")]
     public Vector3 Offset;
 
+    float StartingGameSpeed;
+    float GameSpeedMultiplyer;
+
     // Start before first frame
     void Start()
     {
+        StartingGameSpeed = PlayerSaveData.Speed;
         Invoke("SummonEntity", Interval);
     }
 
     void SummonEntity()
     {
+        //get GameSpeed multiply
+        GameSpeedMultiplyer = PlayerSaveData.Speed / StartingGameSpeed;
+
         //get objects 
         var TrailObject = Instantiate(TrailEntity);
         var PlayerLocation = GetComponent<Transform>();
@@ -43,9 +50,9 @@ public class SpawnTrail : MonoBehaviour
         TrailObject.transform.position = new Vector3(PlayerLocation.position.x + Offset.x, PlayerLocation.position.y + Offset.y, PlayerLocation.position.z + Offset.z);
 
         //set velocity
-        TrailObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-EntitySpeed, 0);
+        TrailObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-EntitySpeed * GameSpeedMultiplyer, 0);
 
         //invoke function again
-        Invoke("SummonEntity", Interval);
+        Invoke("SummonEntity", Interval/GameSpeedMultiplyer); //not exactly what I would like but close
     }
 }

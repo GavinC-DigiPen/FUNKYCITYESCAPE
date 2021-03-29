@@ -15,6 +15,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -188,21 +189,33 @@ public class PlayerMovementController : MonoBehaviour
             // Hit an Obstacle
             if (collision.collider.gameObject.CompareTag("Obstacle"))
             {
+                Debug.Log("test1");
                 ObstacleInfo Obstacle = collision.gameObject.GetComponent<ObstacleInfo>();
 
                 if (Obstacle != null)
                 {
                     currentHealth -= Obstacle.Damage;
 
-                    //destroy object that collided
+                    //destroy object that collided or remove collider
                     if (Obstacle.DestroyOnPlayerCollision)
                     {
                         Destroy(collision.collider.gameObject);
+                    }
+                    else if (Obstacle.RemoveCollision)
+                    {
+                        collision.collider.GetComponent<BoxCollider2D>().enabled = false;
                     }
                 }
                 else
                 {
                     currentHealth -= 1;
+
+                    //try and remove collider from tilemap
+                    var TileMapCollid = collision.collider.GetComponent<TilemapCollider2D>();
+                    if (TileMapCollid != null)
+                    {
+                        TileMapCollid.enabled = false;
+                    }
                 }
 
                 // Game Over
@@ -237,16 +250,16 @@ public class PlayerMovementController : MonoBehaviour
         if (collision.CompareTag("Floor"))
         {
             grounded = true;
-            Debug.Log("Ground");
+            //Debug.Log("Ground");
         }
     }
 
-    private void OnTriggerstay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Floor"))
         {
             grounded = true;
-            Debug.Log("Ground");
+            //Debug.Log("Ground");
         }
     }
 
@@ -255,7 +268,7 @@ public class PlayerMovementController : MonoBehaviour
         if (collision.CompareTag("Floor"))
         {
             grounded = false;
-            Debug.Log("Not Ground");
+            //Debug.Log("Not Ground");
         }
     }
 }

@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpeedMultiply: 1
-  DestroyXLimit: -10
+  DestroyXLimit: -20
 --- !u!114 &519527992721708282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,3 +160,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   DestroyOnPlayerCollision: 1
+  RemoveCollision: 1

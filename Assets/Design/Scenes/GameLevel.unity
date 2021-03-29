@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 285625818}
   m_Layer: 0
   m_Name: Tilemap (1)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,7 +267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 285625813}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3597888033234981408}
@@ -1072,7 +1072,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461198703}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 0, z: 0}
+  m_LocalPosition: {x: 9, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 659809326}
@@ -1365,7 +1365,7 @@ Transform:
   m_GameObject: {fileID: 659809325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.5, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 20, z: 1}
+  m_LocalScale: {x: 1, y: 50, z: 1}
   m_Children:
   - {fileID: 1635435818}
   - {fileID: 461198704}
@@ -1675,7 +1675,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 6758005575228613660, guid: b260f6614e7e495469f8eeb2840c3af2,
     type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -5365,7 +5365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912793011}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.59, y: 7.37, z: 0}
+  m_LocalPosition: {x: 8.16, y: 6.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5443,6 +5443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 9999999
   DestroyOnPlayerCollision: 0
+  RemoveCollision: 0
 --- !u!61 &2024734528
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8184,7 +8185,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5713477466598143277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.76, y: 7.52, z: 0}
+  m_LocalPosition: {x: 10.49, y: 7.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8223,7 +8224,7 @@ MonoBehaviour:
   Length: 24
   WrapZoneLeft: -43
   WarpVariationRange: {x: 1.5, y: 5}
-  HeightVariationRange: {x: 3, y: 3}
+  HeightVariationRange: {x: -3, y: 3}
 --- !u!50 &8284546309668618764
 Rigidbody2D:
   serializedVersion: 4
@@ -8321,12 +8322,12 @@ PrefabInstance:
     - target: {fileID: 124334516056862097, guid: 792ad0a553242c04fbf611039a0c82a8,
         type: 3}
       propertyPath: ObjectPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 124334516056862097, guid: 792ad0a553242c04fbf611039a0c82a8,
         type: 3}
       propertyPath: ObjectSpawnChances.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 124334516056862097, guid: 792ad0a553242c04fbf611039a0c82a8,
         type: 3}
@@ -8374,7 +8375,28 @@ PrefabInstance:
     - target: {fileID: 124334516056862097, guid: 792ad0a553242c04fbf611039a0c82a8,
         type: 3}
       propertyPath: ObjectSpawnChances.Array.data[0]
-      value: 0.5
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 124334516056862097, guid: 792ad0a553242c04fbf611039a0c82a8,
+        type: 3}
+      propertyPath: SpawnInterval.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 124334516056862097, guid: 792ad0a553242c04fbf611039a0c82a8,
+        type: 3}
+      propertyPath: SpawnInterval.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 124334516056862097, guid: 792ad0a553242c04fbf611039a0c82a8,
+        type: 3}
+      propertyPath: ObjectPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 5713477468529980678, guid: 0cbfc8ab62411fd4c99ce576cb681118,
+        type: 3}
+    - target: {fileID: 124334516056862097, guid: 792ad0a553242c04fbf611039a0c82a8,
+        type: 3}
+      propertyPath: ObjectSpawnChances.Array.data[1]
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 6508006467729488154, guid: 792ad0a553242c04fbf611039a0c82a8,
         type: 3}
@@ -8439,7 +8461,7 @@ PrefabInstance:
     - target: {fileID: 8622747578261404074, guid: 792ad0a553242c04fbf611039a0c82a8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 792ad0a553242c04fbf611039a0c82a8, type: 3}

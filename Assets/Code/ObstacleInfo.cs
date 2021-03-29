@@ -22,4 +22,6 @@ public class ObstacleInfo : MonoBehaviour
     public int Damage = 1;
     [Tooltip("Does the object get destroyed on contact")]
     public bool DestroyOnPlayerCollision = true;
+    [Tooltip("Does the collider get turned off after being hit")]
+    public bool RemoveCollision = true;
 }
