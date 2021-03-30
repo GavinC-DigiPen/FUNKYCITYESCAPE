@@ -69,7 +69,7 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.otherCollider.gameObject.CompareTag("Floor"))
+        if(collision.otherCollider.gameObject.CompareTag("Floor") && CurrentState != PlayerAnimationStates.Slide)
         {
             SwitchTo(PlayerAnimationStates.Run);
         }

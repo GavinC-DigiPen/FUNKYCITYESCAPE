@@ -29,8 +29,10 @@ public class PlayerMovementController : MonoBehaviour
     public float MovementSpeed = 5;
     [Tooltip("The max and starting health")]
     public int MaxHealth = 3;
-    [Tooltip("The jump height of the player, in unity squares")]
-    public float JumpHeight = 5;
+    [Tooltip("The jump force of the player")]
+    public float JumpForce = 5;
+    [Tooltip("The amount of time you can hold down space to jump higher.")]
+    public float JumpTime = 0.2f;
     [Tooltip("The number of jumps the player has")]
     public int MaxNumberOfJumps = 2;
     [Tooltip("The speed the player slams back to the ground")]
@@ -62,6 +64,8 @@ public class PlayerMovementController : MonoBehaviour
     Vector2 StartingColliderSize;
     float Dirrection = 0;
     bool grounded = true;
+    bool IsJumping = false;
+    float JumpTimeCounter;
     float AttackCooldownTimer;
 
     // Start is called before the first frame update
@@ -79,7 +83,6 @@ public class PlayerMovementController : MonoBehaviour
         }
         currentHealth = MaxHealth;
         PlayerSaveData.DistanceRun = 0;
-        JumpHeight = Mathf.Sqrt(2.0f * Physics2D.gravity.magnitude * JumpHeight); // Take the square root of the jump height so that the math for gravity works to make the number the user enters the number of units the player will actually be able to jump
         StartingColliderOffset = PlayerBoxCollider.offset;
         StartingColliderSize = PlayerBoxCollider.size;
     }
@@ -94,41 +97,63 @@ public class PlayerMovementController : MonoBehaviour
         PlayerBoxCollider.offset = StartingColliderOffset;
         PlayerBoxCollider.size = StartingColliderSize;
 
+        //Stops higher jump when space is no longer being pressed
+        if (Input.GetKeyUp(JumpKey))
+        {
+            Debug.Log("no jump - space");
+            IsJumping = false;
+        }
+
         // Jumping
         if (Input.GetKeyDown(JumpKey))
         {
             if (jumpsRemaining > 0)
             {
                 animationManager.SwitchTo(PlayerAnimationStates.Jump);
-                var jump_vec = new Vector3(transform.position.x,JumpHeight,0);
+                var jump_vec = new Vector2(PlayerRB.velocity.x, Vector2.up.y * JumpForce);
                 PlayerRB.velocity = jump_vec;
                 jumpsRemaining -= 1;
+                IsJumping = true;
+                JumpTimeCounter = 0;
+            }
+        }
+        //jump more if player is holding space
+        else if (Input.GetKey(JumpKey) && IsJumping)
+        {
+            //Lets you keep jumping if time hasn't run out
+            if (JumpTimeCounter < JumpTime)
+            {
+                PlayerRB.velocity = new Vector2(PlayerRB.velocity.x, Vector2.up.y * JumpForce);
+                JumpTimeCounter += Time.deltaTime;
+            }
+            else
+            {
+                IsJumping = false;
             }
         }
         //Slam
-        else if (Input.GetKey(Slide_SlamKey) && !grounded && PlayerRB.velocity.y <= 0)
+        else if (Input.GetKey(Slide_SlamKey) && !grounded && animationManager.CurrentState != PlayerAnimationStates.Slide)
         {
             animationManager.SwitchTo(PlayerAnimationStates.Slam);
             var slam_vec = new Vector3(transform.position.x, -SlamSpeed, 0);
             PlayerRB.velocity = slam_vec;
         }
         // Falling
-        else if (!grounded)
+        else if (!grounded && animationManager.CurrentState != PlayerAnimationStates.Slide && Input.GetKey(Slide_SlamKey))
         {
             animationManager.SwitchTo(PlayerAnimationStates.Jump);
         }
         // Sliding
-        else if (Input.GetKey(Slide_SlamKey) && grounded)
-        {
+        else if (Input.GetKey(Slide_SlamKey) && grounded && !IsJumping && animationManager.CurrentState != PlayerAnimationStates.Jump && animationManager.CurrentState != PlayerAnimationStates.Slam)
+        { 
             animationManager.SwitchTo(PlayerAnimationStates.Slide);
 
             //change character hitbox
             PlayerBoxCollider.offset = SlidingColliderOffset;
             PlayerBoxCollider.size = SlidingColliderSize;
-
         }
         // Running
-        else 
+        else if (grounded)
         {
             animationManager.SwitchTo(PlayerAnimationStates.Run);
         }
@@ -182,59 +207,62 @@ public class PlayerMovementController : MonoBehaviour
     //check if collide with an obstacle
     private void OnCollisionStay2D(Collision2D collision)
     {
-        var InvulnTime = GetComponent<PlayerAnimationManager>().CurrInvulnTime;
-
-        if (InvulnTime <= 0)
+        // Hit an Obstacle
+        if (collision.collider.gameObject.CompareTag("Obstacle"))
         {
-            // Hit an Obstacle
-            if (collision.collider.gameObject.CompareTag("Obstacle"))
-            {
-                Debug.Log("test1");
-                ObstacleInfo Obstacle = collision.gameObject.GetComponent<ObstacleInfo>();
+            ObstacleInfo Obstacle = collision.gameObject.GetComponent<ObstacleInfo>();
+            var InvulnTime = GetComponent<PlayerAnimationManager>().CurrInvulnTime;
 
-                if (Obstacle != null)
+            //deal with things that have obstacle script
+            if (Obstacle != null)
+            {
+                if (InvulnTime <= 0)
                 {
                     currentHealth -= Obstacle.Damage;
-
-                    //destroy object that collided or remove collider
-                    if (Obstacle.DestroyOnPlayerCollision)
-                    {
-                        Destroy(collision.collider.gameObject);
-                    }
-                    else if (Obstacle.RemoveCollision)
-                    {
-                        collision.collider.GetComponent<BoxCollider2D>().enabled = false;
-                    }
                 }
-                else
+
+                //destroy object that collided or remove collider
+                if (Obstacle.DestroyOnPlayerCollision)
+                {
+                    Destroy(collision.collider.gameObject);
+                }
+                else if (Obstacle.RemoveCollision)
+                {
+                    collision.collider.GetComponent<BoxCollider2D>().enabled = false;
+                }
+            }
+            //just do damage
+            else
+            {
+                if (InvulnTime <= 0)
                 {
                     currentHealth -= 1;
-
-                    //try and remove collider from tilemap
-                    var TileMapCollid = collision.collider.GetComponent<TilemapCollider2D>();
-                    if (TileMapCollid != null)
-                    {
-                        TileMapCollid.enabled = false;
-                    }
-                }
-
-                // Game Over
-                if (currentHealth <= 0)
-                {
-                    // Load score level
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("ScoreScreen");
-                }
-                if (healthBarObj != null)
-                {
-                    healthBarObj.GetComponent<FeedbackBar>().SetValue(currentHealth);
-                    animationManager.SwitchTo(PlayerAnimationStates.Hurt);
                 }
             }
-            // Hit the floor
-            if (collision.collider.gameObject.CompareTag("Floor"))
+
+            //try and remove collider from tilemap
+            var TileMapCollid = collision.collider.GetComponent<TilemapCollider2D>();
+            if (TileMapCollid != null)
             {
-                jumpsRemaining = MaxNumberOfJumps;
+                TileMapCollid.enabled = false;
             }
+
+            // Game Over
+            if (currentHealth <= 0)
+            {
+                // Load score level
+                UnityEngine.SceneManagement.SceneManager.LoadScene("ScoreScreen");
+            }
+            if (healthBarObj != null)
+            {
+                healthBarObj.GetComponent<FeedbackBar>().SetValue(currentHealth);
+                animationManager.SwitchTo(PlayerAnimationStates.Hurt);
+            }
+        }
+        // Hit the floor
+        if (collision.collider.gameObject.CompareTag("Floor"))
+        {
+            jumpsRemaining = MaxNumberOfJumps;
         }
     }
 

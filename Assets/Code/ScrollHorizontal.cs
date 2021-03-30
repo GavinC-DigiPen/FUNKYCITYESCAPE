@@ -21,6 +21,8 @@ public class ScrollHorizontal : MonoBehaviour
 {
     [Tooltip("The platform in front of this one")]
     public GameObject PlatformInFront;
+    [Tooltip("The speed multiply of the obstacle (1 is the same as enviorment)")]
+    public float SpeedMultiply = 1;
     [Tooltip("The length of the platform")]
     public float Length = 0;
     [Tooltip("There the warp zone is on the left")]
@@ -71,6 +73,6 @@ public class ScrollHorizontal : MonoBehaviour
 
 
         // Move
-        PlatformRB.velocity = new Vector3(-MoveSpeed, PlatformRB.velocity.y);
+        PlatformRB.velocity = new Vector3(-MoveSpeed * SpeedMultiply, PlatformRB.velocity.y);
     }
 }
