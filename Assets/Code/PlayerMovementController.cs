@@ -3,7 +3,7 @@
 // File Name:	PlayerMovementController.cs
 // Author(s):	Jeremy Kings (j.kings) - Unity Project
 //              Nathan Mueller - original Zero Engine project
-//              Gavin Cooper - added player movement side to side
+//              Gavin Cooper
 // Project:		Endless Runner
 // Course:		WANIC VGP
 //
@@ -23,12 +23,10 @@ public class PlayerMovementController : MonoBehaviour
     public GameObject healthBarObj;
     [Tooltip("The distance text mesh pro object")]
     public GameObject distanceObj;
-    [Tooltip("The prefab that is summoned during an attack to do damage")]
-    public GameObject AttackObj;
-    [Tooltip("The speed of the player's sprint")]
-    public float MovementSpeed = 5;
     [Tooltip("The max and starting health")]
     public int MaxHealth = 3;
+    [Tooltip("The speed of the player's sprint")]
+    public float MovementSpeed = 5;
     [Tooltip("The jump force of the player")]
     public float JumpForce = 5;
     [Tooltip("The amount of time you can hold down space to jump higher.")]
@@ -39,6 +37,7 @@ public class PlayerMovementController : MonoBehaviour
     public int SlamSpeed = 15;
     [Tooltip("The cool down between attacks")]
     public float AttackCooldown = 3;
+
     [Tooltip("The key that will be used for jumping")]
     public KeyCode JumpKey = KeyCode.Space;
     [Tooltip("The key that will be used for attacking")]
@@ -110,8 +109,7 @@ public class PlayerMovementController : MonoBehaviour
             if (jumpsRemaining > 0)
             {
                 animationManager.SwitchTo(PlayerAnimationStates.Jump);
-                var jump_vec = new Vector2(PlayerRB.velocity.x, Vector2.up.y * JumpForce);
-                PlayerRB.velocity = jump_vec;
+                PlayerRB.velocity = new Vector2(PlayerRB.velocity.x, Vector2.up.y * JumpForce);
                 jumpsRemaining -= 1;
                 IsJumping = true;
                 JumpTimeCounter = 0;
@@ -173,7 +171,12 @@ public class PlayerMovementController : MonoBehaviour
             //set cooldown time
             AttackCooldownTimer = AttackCooldown;
         }
-        
+        //give character hang time during animation
+        if (AttackCooldownTimer > AttackCooldown - animationManager.TimeInAttack)
+        {
+            PlayerRB.velocity = new Vector2(PlayerRB.velocity.x, 0);
+        }
+
         //Figure out the dirrection player is moving
         if (Input.GetKeyDown(LeftKey))
         {
@@ -216,7 +219,7 @@ public class PlayerMovementController : MonoBehaviour
             //deal with things that have obstacle script
             if (Obstacle != null)
             {
-                if (InvulnTime <= 0)
+                if (InvulnTime <= 0 && animationManager.AttackCooldownTimer < 0)
                 {
                     currentHealth -= Obstacle.Damage;
                 }
@@ -234,7 +237,7 @@ public class PlayerMovementController : MonoBehaviour
             //just do damage
             else
             {
-                if (InvulnTime <= 0)
+                if (InvulnTime <= 0 && animationManager.AttackCooldownTimer < 0)
                 {
                     currentHealth -= 1;
                 }
@@ -247,16 +250,23 @@ public class PlayerMovementController : MonoBehaviour
                 TileMapCollid.enabled = false;
             }
 
+            //animation 
+            if (animationManager.AttackCooldownTimer < 0)
+            {
+                animationManager.SwitchTo(PlayerAnimationStates.Hurt);
+            }
+
+            //health bar
+            if (healthBarObj != null)
+            {
+                healthBarObj.GetComponent<FeedbackBar>().SetValue(currentHealth);
+            }
+
             // Game Over
             if (currentHealth <= 0)
             {
                 // Load score level
                 UnityEngine.SceneManagement.SceneManager.LoadScene("ScoreScreen");
-            }
-            if (healthBarObj != null)
-            {
-                healthBarObj.GetComponent<FeedbackBar>().SetValue(currentHealth);
-                animationManager.SwitchTo(PlayerAnimationStates.Hurt);
             }
         }
         // Hit the floor

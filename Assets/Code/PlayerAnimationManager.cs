@@ -3,6 +3,8 @@
 // File Name:	PlayerAnimationManager.cs
 // Author(s):	Jeremy Kings (j.kings) - Unity Project
 //              Nathan Mueller - original Zero Engine project
+//              Gavin Cooper
+//
 // Project:		Endless Runner
 // Course:		WANIC VGP
 //
@@ -34,11 +36,12 @@ public class PlayerAnimationManager : MonoBehaviour
     public PlayerAnimationStates CurrentState = PlayerAnimationStates.Run;
     [Tooltip("Last state")]
     public PlayerAnimationStates PreviousState = PlayerAnimationStates.Run;
-    [Tooltip("The current amount of time invonerable (for scripts)")]
-    public float CurrInvulnTime = 0;
 
     Animator animator;
-    float AttackCooldownTimer;
+    [Tooltip("The attack cooldown counter (for scripts)")]
+    public float AttackCooldownTimer = 0;
+    [Tooltip("The invonerable cooldown counter (for scripts)")]
+    public float CurrInvulnTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -57,13 +60,22 @@ public class PlayerAnimationManager : MonoBehaviour
         if (CurrInvulnTime > 0 && CurrentState != PlayerAnimationStates.Hurt)
         {
             SwitchTo(PlayerAnimationStates.Hurt);
+            AttackCooldownTimer = 0;
         }
         // Switch back to the correct animation if the player is done with the hurt animation.
         if (CurrInvulnTime <= 0 && CurrentState == PlayerAnimationStates.Hurt)
         {
-            SwitchTo(PreviousState);
+            if (PreviousState != PlayerAnimationStates.Attack)
+            {
+                SwitchTo(PreviousState);
+            }
+            else
+            {
+                SwitchTo(PlayerAnimationStates.Jump);
+            }
         }
 
+        //actually play the correct animation
         PlayCurrentAnimation();
     }
 
