@@ -98,8 +98,7 @@ public class PlayerMovementController : MonoBehaviour
 
         //Stops higher jump when space is no longer being pressed
         if (Input.GetKeyUp(JumpKey))
-        {
-            Debug.Log("no jump - space");
+        { 
             IsJumping = false;
         }
 
