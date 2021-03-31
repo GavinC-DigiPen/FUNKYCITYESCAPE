@@ -2050,7 +2050,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.11500001, y: -0.051}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2061,7 +2061,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 3}
+  m_Size: {x: 2, y: 2.85}
   m_EdgeRadius: 0
 --- !u!50 &1345008990
 Rigidbody2D:
@@ -2123,9 +2123,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 6758005575228613660, guid: b260f6614e7e495469f8eeb2840c3af2,
-    type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 296291530545687170, guid: 01e5e676a0114b648ac226a0ee49d0f1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2163,9 +2162,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarObj: {fileID: 1960842694}
   distanceObj: {fileID: 978963812}
-  AttackObj: {fileID: 0}
+  MaxHealth: 500
   MovementSpeed: 8
-  MaxHealth: 3
   JumpForce: 10
   JumpTime: 0.3
   MaxNumberOfJumps: 1
@@ -2194,8 +2192,8 @@ MonoBehaviour:
   TimeInAttack: 0.5
   CurrentState: 0
   PreviousState: 0
-  CurrInvulnTime: 0
   AttackCooldownTimer: 0
+  CurrInvulnTime: 0
 --- !u!114 &1345008995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2213,6 +2211,7 @@ MonoBehaviour:
   - 10
   - 20
   Delay: 1
+  DifficultlyMultiplier: 1.01
   Indicator: {fileID: 860902455}
   IndicatorSprites:
   - {fileID: 21300000, guid: 388c7755fca038e4cb2a1888d9259369, type: 3}
