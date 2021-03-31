@@ -17,4 +17,5 @@ using UnityEngine;
 public class PlayerSaveData
 {
     public static float DistanceRun = 0.0f;
+    public static float Speed = 10.0f;
 }
