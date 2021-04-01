@@ -20,8 +20,6 @@ public class SpawnTrail : MonoBehaviour
 {
     [Tooltip("The object that will be summoned to create the trail")]
     public GameObject TrailEntity;
-    [Tooltip("How often an entity will be spawned")]
-    public float Interval = 0.5f;
     [Tooltip("Speed of entity moving left")]
     public float EntitySpeed = 10f;
     [Tooltip("The offset of the spawn location")]
@@ -34,10 +32,10 @@ public class SpawnTrail : MonoBehaviour
     void Start()
     {
         StartingGameSpeed = PlayerSaveData.Speed;
-        Invoke("SummonEntity", Interval);
     }
 
-    void SummonEntity()
+    // Runs every frame
+    void Update()
     {
         //get GameSpeed multiply
         GameSpeedMultiplyer = PlayerSaveData.Speed / StartingGameSpeed;
@@ -51,8 +49,5 @@ public class SpawnTrail : MonoBehaviour
 
         //set velocity
         TrailObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-EntitySpeed * GameSpeedMultiplyer, 0);
-
-        //invoke function again
-        Invoke("SummonEntity", Interval/GameSpeedMultiplyer); //not exactly what I would like but close
     }
 }
