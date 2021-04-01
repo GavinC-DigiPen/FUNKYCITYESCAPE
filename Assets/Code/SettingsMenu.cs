@@ -16,14 +16,25 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer Mixer;
     [Tooltip("The resolution dropdown.")]
     public Dropdown ResolutionDropdown;
+    [Tooltip("The volume slider.")]
+    public Slider VolumeSlider;
 
 
     Resolution[] Resolutions;
+    float CurrentVolume;
 
 
     //Set up the resolution dropdown
     void Start()
     {
+        //set volume slider
+        if (VolumeSlider)
+        {
+            Mixer.GetFloat("Volume", out CurrentVolume);
+            VolumeSlider.value = Mathf.Pow(10, CurrentVolume / 20);
+        }
+
+        //deal with resolution 
         if (ResolutionDropdown)
         {
             //set up resolution and clear dropdown

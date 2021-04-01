@@ -117,8 +117,7 @@ public class PlayerAnimationManager : MonoBehaviour
 
     public void PlayCurrentAnimation()
     {
-        // Don't bother if we haven't
-        // switched states recently
+        // Don't bother if we haven't switched states recently, unless it is jump (we want to replay jump on double jump)
         if (CurrentState == PreviousState)
             return;
 
