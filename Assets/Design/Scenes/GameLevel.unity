@@ -311,7 +311,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.5, y: 0.5, z: 0}
   m_MaxChunkCount: 16
@@ -1737,7 +1737,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.5, y: 0.5, z: 0}
   m_MaxChunkCount: 16
@@ -2936,7 +2936,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 388c7755fca038e4cb2a1888d9259369, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1aac102c404370458899b68f657546c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3440,7 +3440,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.5, y: 0.5, z: 0}
   m_MaxChunkCount: 16
@@ -6133,7 +6133,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.5, y: 0.5, z: 0}
   m_MaxChunkCount: 16
@@ -8520,7 +8520,7 @@ MonoBehaviour:
   TrailEntity: {fileID: 6326184653472465259, guid: 898183cc4031a6a4f8f743b91773e33f,
     type: 3}
   EntitySpeed: 15
-  Offset: {x: -0.5, y: -1.2, z: 0}
+  Offset: {x: 0.2, y: -1.2, z: 0}
 --- !u!1 &1306164788
 GameObject:
   m_ObjectHideFlags: 0
@@ -8807,8 +8807,8 @@ MonoBehaviour:
   Slide_SlamKey: 115
   RightKey: 100
   LeftKey: 97
-  SlidingColliderOffset: {x: 0, y: -0.75}
-  SlidingColliderSize: {x: 3, y: 1.5}
+  SlidingColliderOffset: {x: 0, y: -0.85}
+  SlidingColliderSize: {x: 3, y: 1.3}
 --- !u!114 &1345008994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8847,8 +8847,8 @@ MonoBehaviour:
   DifficultlyMultiplier: 1.01
   Indicator: {fileID: 860902455}
   IndicatorSprites:
-  - {fileID: 21300000, guid: 388c7755fca038e4cb2a1888d9259369, type: 3}
-  - {fileID: 21300000, guid: b88f3cad4c7488f4a82452a0f04f9dab, type: 3}
+  - {fileID: 21300000, guid: f1aac102c404370458899b68f657546c, type: 3}
+  - {fileID: 21300000, guid: 65e5f3f39dd572c4f8859c54b6830da2, type: 3}
 --- !u!70 &1345008996
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -9017,7 +9017,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.5, y: 0.5, z: 0}
   m_MaxChunkCount: 16
@@ -13497,7 +13497,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.5, y: 0.5, z: 0}
   m_MaxChunkCount: 16
@@ -16651,7 +16651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1912793012
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16711,7 +16711,7 @@ Transform:
   m_GameObject: {fileID: 1912793011}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.1, y: 13.9, z: 0}
-  m_LocalScale: {x: 15, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
@@ -16823,7 +16823,7 @@ Transform:
   - {fileID: 1780007949}
   - {fileID: 943531561}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2024734526
 GameObject:
@@ -17310,7 +17310,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.5, y: 0.5, z: 0}
   m_MaxChunkCount: 16
@@ -19994,7 +19994,7 @@ PrefabInstance:
     - target: {fileID: 6508006467729488154, guid: 792ad0a553242c04fbf611039a0c82a8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6508006467729488154, guid: 792ad0a553242c04fbf611039a0c82a8,
         type: 3}

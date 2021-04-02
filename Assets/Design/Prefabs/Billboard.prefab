@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f0283735aba3e4f9d10a542e7975db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Heights: 0100000007000000
+  Heights: fdffffff0100000007000000
 --- !u!1 &1221092285264754320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,7 +1471,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -5
+  m_SortingOrder: -6
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
