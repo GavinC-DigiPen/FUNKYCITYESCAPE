@@ -28,18 +28,25 @@ public class GameSpeedControler : MonoBehaviour
     public float DifficultlyMultiplier = 0.1f;
     [Tooltip("The object that is the indicator")]
     public GameObject Indicator;
-    [Tooltip("The diffrent sprite that show speed")]
+    [Tooltip("The diffrent speed sprites")]
     public Sprite[] IndicatorSprites;
+    [Tooltip("The diffrent speed sounds")]
+    public AudioClip[] AudioIndicators;
 
+    AudioSource audioSource;
     float[] StartingSpeeds = {0, 0};
     int SpeedIndex = 0;
     int SpriteIndex;
+    int AudioIndex;
     float DelayCounter = 0;
     int DistanceCounter = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        //get audio source
+        audioSource = GetComponent<AudioSource>();
+
         //set the speed
         PlayerSaveData.Speed = Speeds[0];
 
@@ -53,8 +60,9 @@ public class GameSpeedControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(DelayCounter);
         //count down on the timer
-        DelayCounter =- Time.deltaTime;
+        DelayCounter -= Time.deltaTime;
 
         //check if key was pressed to change speed
         if (Input.GetKeyDown(ChangeSpeedButton))
@@ -73,7 +81,9 @@ public class GameSpeedControler : MonoBehaviour
                 PlayerSaveData.Speed = Speeds[SpeedIndex];
 
                 //set delay
+                Debug.Log(DelayCounter);
                 DelayCounter = Delay;
+                Debug.Log(DelayCounter);
 
                 //get correct sprite index
                 SpriteIndex = SpeedIndex;
@@ -83,7 +93,18 @@ public class GameSpeedControler : MonoBehaviour
                 }
 
                 //change sprite of speed idicator
-                Indicator.GetComponent<SpriteRenderer>().sprite = IndicatorSprites[SpeedIndex];
+                Indicator.GetComponent<SpriteRenderer>().sprite = IndicatorSprites[SpriteIndex];
+
+                //get correct sprite index
+                AudioIndex = SpeedIndex;
+                if (AudioIndex >= AudioIndicators.Length)
+                {
+                    AudioIndex = AudioIndicators.Length - 1;
+                }
+
+                //play sound
+                audioSource.clip = AudioIndicators[AudioIndex];
+                audioSource.Play();
             }
         }
 
