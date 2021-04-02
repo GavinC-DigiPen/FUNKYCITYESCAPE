@@ -69,6 +69,7 @@ public class PlayerMovementController : MonoBehaviour
     Vector2 StartingColliderSize;
     float Dirrection = 0;
     bool grounded = true;
+    bool groundLast = true;
     bool IsJumping = false;
     float JumpTimeCounter;
     float AttackCooldownTimer;
@@ -211,6 +212,14 @@ public class PlayerMovementController : MonoBehaviour
                     + distText + " m";
             }
         }
+
+        //play sound for landing
+        if (groundLast == false && grounded)
+        {
+            audioSource.clip = Land;
+            audioSource.Play();
+        }
+        groundLast = grounded;
     }
 
     //check if collide with an obstacle
@@ -295,10 +304,6 @@ public class PlayerMovementController : MonoBehaviour
         {
             grounded = true;
             //Debug.Log("Ground");
-
-            //also play sound
-            audioSource.clip = Land;
-            audioSource.Play();
         }
     }
 
