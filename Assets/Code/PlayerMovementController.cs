@@ -4,6 +4,7 @@
 // Author(s):	Jeremy Kings (j.kings) - Unity Project
 //              Nathan Mueller - original Zero Engine project
 //              Gavin Cooper
+//
 // Project:		Endless Runner
 // Course:		WANIC VGP
 //
@@ -53,12 +54,17 @@ public class PlayerMovementController : MonoBehaviour
     [Tooltip("The box collider size while sliding/attacking")]
     public Vector2 SlidingColliderSize;
 
+    [Tooltip("The land sound")]
+    public AudioClip Land;
+
+
     float GameSpeed;
     int jumpsRemaining = 0;
     int currentHealth = 0;
     PlayerAnimationManager animationManager;
     BoxCollider2D PlayerBoxCollider;
     Rigidbody2D PlayerRB;
+    AudioSource audioSource;
     Vector2 StartingColliderOffset;
     Vector2 StartingColliderSize;
     float Dirrection = 0;
@@ -74,6 +80,7 @@ public class PlayerMovementController : MonoBehaviour
         animationManager = GetComponent<PlayerAnimationManager>();
         PlayerBoxCollider = GetComponent<BoxCollider2D>();
         PlayerRB = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
 
         //set variables
         if (healthBarObj != null)
@@ -288,6 +295,10 @@ public class PlayerMovementController : MonoBehaviour
         {
             grounded = true;
             //Debug.Log("Ground");
+
+            //also play sound
+            audioSource.clip = Land;
+            audioSource.Play();
         }
     }
 
