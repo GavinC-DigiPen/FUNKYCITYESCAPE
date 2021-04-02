@@ -8931,7 +8931,8 @@ MonoBehaviour:
   LeftKey: 97
   SlidingColliderOffset: {x: 0, y: -0.85}
   SlidingColliderSize: {x: 3, y: 1.3}
-  Land: {fileID: 8300000, guid: 2ca168eab0d40cd47bcf5213d40dad37, type: 3}
+  LandSound: {fileID: 8300000, guid: 2ca168eab0d40cd47bcf5213d40dad37, type: 3}
+  JumpSound: {fileID: 8300000, guid: d5e0d8758e74afb4181adf3fd066e288, type: 3}
 --- !u!114 &1345008994
 MonoBehaviour:
   m_ObjectHideFlags: 0

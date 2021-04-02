@@ -55,7 +55,9 @@ public class PlayerMovementController : MonoBehaviour
     public Vector2 SlidingColliderSize;
 
     [Tooltip("The land sound")]
-    public AudioClip Land;
+    public AudioClip LandSound;
+    [Tooltip("The jump sound")]
+    public AudioClip JumpSound;
 
 
     float GameSpeed;
@@ -120,6 +122,10 @@ public class PlayerMovementController : MonoBehaviour
                 jumpsRemaining -= 1;
                 IsJumping = true;
                 JumpTimeCounter = 0;
+
+                //play jump sound 
+                audioSource.clip = JumpSound;
+                audioSource.Play();
             }
         }
         //jump more if player is holding space
@@ -216,7 +222,7 @@ public class PlayerMovementController : MonoBehaviour
         //play sound for landing
         if (groundLast == false && grounded)
         {
-            audioSource.clip = Land;
+            audioSource.clip = LandSound;
             audioSource.Play();
         }
         groundLast = grounded;
