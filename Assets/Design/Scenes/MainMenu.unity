@@ -1917,8 +1917,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 320.49, y: 1.0000001}
-  m_SizeDelta: {x: 359.01868, y: 200}
+  m_AnchoredPosition: {x: 320.49, y: -9.86}
+  m_SizeDelta: {x: 359.01868, y: 221.72418}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1877606188
 MonoBehaviour:
@@ -1940,7 +1940,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Move - \t\tA & D\nJump - \t\tSpace\nSlide/Slam - \tS\t\nKick - \t\tE\t\nSpeed
-    Up - \tQ\t"
+    Up - \tQ\t\nPause -\t\tEsc\t"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2072,36 +2072,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1928208654}
     m_ColliderPaths:
-    - - X: -235000100
-        Y: -4999959
-      - X: -235000100
-        Y: -65000041
-      - X: -235000041
-        Y: -65000100
-      - X: -154999959
-        Y: -65000100
-      - X: -154999900
-        Y: -65000041
-      - X: -154999900
+    - - X: -235000000
+        Y: -5000000
+      - X: -235000000
         Y: -65000000
       - X: 785000000
         Y: -65000000
       - X: 785000000
         Y: -5000000
-      - X: -154999900
-        Y: -5000000
-      - X: -154999900
-        Y: -4999959
-      - X: -154999959
-        Y: -4999900
-      - X: -235000041
-        Y: -4999900
   m_CompositePaths:
     m_Paths:
-    - - {x: -23.50001, y: -6.4999747}
-      - {x: 78.5, y: -6.499971}
+    - - {x: 78.49997, y: -6.5}
       - {x: 78.49997, y: -0.5}
-      - {x: -23.50001, y: -0.5000252}
+      - {x: -23.5, y: -0.5000293}
+      - {x: -23.499971, y: -6.5}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!50 &1928208653
