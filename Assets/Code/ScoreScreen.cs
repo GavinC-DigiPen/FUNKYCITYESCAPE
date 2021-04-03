@@ -3,6 +3,7 @@
 // File Name:	ScoreScreen.cs
 // Author(s):	Jeremy Kings (j.kings) - Unity Project
 //              Nathan Mueller - original Zero Engine project
+//
 // Project:		Endless Runner
 // Course:		WANIC VGP
 //

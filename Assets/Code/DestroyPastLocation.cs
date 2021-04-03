@@ -1,6 +1,6 @@
 ﻿//------------------------------------------------------------------------------
 //
-// File Name:	SpawnTrail.cs
+// File Name:	DestroyPastLocation.cs
 // Author(s):	Gavin Cooper
 //
 // Project:		Endless Runner
@@ -19,7 +19,7 @@ using UnityEngine;
 public class DestroyPastLocation : MonoBehaviour
 {
     [Tooltip("The point at which the object is destoyed")]
-    public float DestroyXLimit = -19.0f;
+    public float DestroyXLimit = -25.0f;
 
     // Update is called once per frame
     void Update()

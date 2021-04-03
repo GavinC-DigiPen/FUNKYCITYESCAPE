@@ -1,10 +1,12 @@
 ﻿//------------------------------------------------------------------------------
 //
 // File Name:	RandomSpawner.cs
-// Author(s):	Jeremy Kings (j.kings) - Unity Project
-//              Nathan Mueller - original Zero Engine project
+// Author(s):	Gavin Cooper
+//
 // Project:		Endless Runner
 // Course:		WANIC VGP
+//
+// Description: A script that spawns in objects randomly based off variables
 //
 // Copyright © 2021 DigiPen (USA) Corporation.
 //

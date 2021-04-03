@@ -307,7 +307,7 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    //check if on ground
+    //public function to check if on ground
     public bool IsGrounded()
     {
         return grounded;

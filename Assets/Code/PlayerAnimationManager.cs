@@ -81,7 +81,8 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.otherCollider.gameObject.CompareTag("Floor") && CurrentState != PlayerAnimationStates.Slide)
+        //make player run on the ground
+        if (collision.otherCollider.gameObject.CompareTag("Floor") && CurrentState != PlayerAnimationStates.Slide)
         {
             SwitchTo(PlayerAnimationStates.Run);
         }
@@ -94,7 +95,6 @@ public class PlayerAnimationManager : MonoBehaviour
         {
             return;
         }
-      
         if (CurrentState != PlayerAnimationStates.Hurt && state == PlayerAnimationStates.Hurt)
         {
             CurrInvulnTime = InvulnTime;
@@ -105,12 +105,12 @@ public class PlayerAnimationManager : MonoBehaviour
         {
             return;
         }
-
         if (CurrentState != PlayerAnimationStates.Attack && state == PlayerAnimationStates.Attack && state != PlayerAnimationStates.Hurt)
         {
             AttackCooldownTimer = TimeInAttack;
         }
 
+        //set states
         PreviousState = CurrentState;
         CurrentState = state;
     }

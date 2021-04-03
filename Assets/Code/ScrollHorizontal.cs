@@ -3,9 +3,12 @@
 // File Name:	ScrollHorizontal.cs
 // Author(s):	Jeremy Kings (j.kings) - Unity Project
 //              Nathan Mueller - original Zero Engine project
-//              Gavin Cooper -added ability to offset platforms
+//              Gavin Cooper
+//
 // Project:		Endless Runner
 // Course:		WANIC VGP
+//
+// Description: A script that allows you to make a group of platforms that move right to left in order
 //
 // Note: The x possition of the center of the parent object needs to be alined with the left edge of the platform tilemap, also adde up and down movement
 //
@@ -70,7 +73,6 @@ public class ScrollHorizontal : MonoBehaviour
             //set position
             transform.position = position;
         }
-
 
         // Move
         PlatformRB.velocity = new Vector3(-MoveSpeed * SpeedMultiply, PlatformRB.velocity.y);

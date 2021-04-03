@@ -1,9 +1,16 @@
-﻿////////////////////////////
-/// By: Gavin C
-/// Date: 1/4/2021
-/// Desription: This is a script for the pause menu
-///////////////////////////
-
+﻿//------------------------------------------------------------------------------
+//
+// File Name:	PauseFunction.cs
+// Author(s):	Gavin Cooper
+//
+// Project:		Endless Runner
+// Course:		WANIC VGP
+//
+// Description: A script that is for the pause menu functions
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
 
 using System.Collections;
 using System.Collections.Generic;

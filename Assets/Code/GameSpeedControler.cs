@@ -6,7 +6,7 @@
 // Project:		Endless Runner
 // Course:		WANIC VGP
 //
-// Description: A script that changes the speed of the level
+// Description: A script that changes the speed of the game
 //
 // Copyright © 2021 DigiPen (USA) Corporation.
 //

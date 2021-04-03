@@ -3,6 +3,8 @@
 // File Name:	Prop.cs
 // Author(s):	Jeremy Kings (j.kings) - Unity Project
 //              Nathan Mueller - original Zero Engine project
+//              Gavin
+//
 // Project:		Endless Runner
 // Course:		WANIC VGP
 //

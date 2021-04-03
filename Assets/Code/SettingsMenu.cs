@@ -1,8 +1,16 @@
-﻿////////////////////////////
-/// By: Gavin C
-/// Date: 1/5/2021
-/// Desription: This is a script for the settings menu
-///////////////////////////
+﻿//------------------------------------------------------------------------------
+//
+// File Name:	SettingsMenu.cs
+// Author(s):	Gavin Cooper
+//
+// Project:		Endless Runner
+// Course:		WANIC VGP
+//
+// Description: A script that is used for settings menu functions
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
 
 using System.Collections;
 using System.Collections.Generic;
@@ -18,7 +26,6 @@ public class SettingsMenu : MonoBehaviour
     public Dropdown ResolutionDropdown;
     [Tooltip("The volume slider.")]
     public Slider VolumeSlider;
-
 
     Resolution[] Resolutions;
     float CurrentVolume;
