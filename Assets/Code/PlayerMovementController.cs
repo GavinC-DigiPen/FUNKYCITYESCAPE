@@ -58,6 +58,8 @@ public class PlayerMovementController : MonoBehaviour
     public AudioClip LandSound;
     [Tooltip("The jump sound")]
     public AudioClip JumpSound;
+    [Tooltip("The hurt sound")]
+    public AudioClip HurtSound;
 
 
     float GameSpeed;
@@ -243,6 +245,10 @@ public class PlayerMovementController : MonoBehaviour
                 if (InvulnTime <= 0 && animationManager.AttackCooldownTimer < 0)
                 {
                     currentHealth -= Obstacle.Damage;
+
+                    //play hurt sound
+                    audioSource.clip = HurtSound;
+                    audioSource.Play();
                 }
 
                 //destroy object that collided or remove collider
@@ -261,6 +267,10 @@ public class PlayerMovementController : MonoBehaviour
                 if (InvulnTime <= 0 && animationManager.AttackCooldownTimer < 0)
                 {
                     currentHealth -= 1;
+
+                    //play hurt sound
+                    audioSource.clip = HurtSound;
+                    audioSource.Play();
                 }
             }
 
